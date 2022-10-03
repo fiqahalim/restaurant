@@ -12,6 +12,12 @@ use App\Http\Controllers\Frontend\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 
+/*
+    |--------------------------------------------------------------------------
+    | FRONT END
+    |--------------------------------------------------------------------------
+*/
+
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/categories', [FrontendCategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category}', [FrontendCategoryController::class, 'show'])->name('categories.show');
@@ -22,9 +28,22 @@ Route::get('/reservation/step-two', [FrontendReservationController::class, 'step
 Route::post('/reservation/step-two', [FrontendReservationController::class, 'storeStepTwo'])->name('reservations.store.step.two');
 Route::get('/thankyou', [WelcomeController::class, 'thankyou'])->name('thankyou');
 
+
+/*
+    |--------------------------------------------------------------------------
+    | ALL AUTHENTICATIONS
+    |--------------------------------------------------------------------------
+*/
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+/*
+    |--------------------------------------------------------------------------
+    | ADMIN AUTHENTICATIONS
+    |--------------------------------------------------------------------------
+*/
 
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
