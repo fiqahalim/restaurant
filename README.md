@@ -8,6 +8,7 @@
 - git clone this project
 - run `composer install`
 - run `npm install` and `npm run dev`
+- run `php artisan storage:link` for local storage link
 
 
 ### Front End (Guest)
